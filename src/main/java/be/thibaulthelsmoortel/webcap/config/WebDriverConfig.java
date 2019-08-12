@@ -58,4 +58,9 @@ public class WebDriverConfig {
         return new ChromeDriver(options);
     }
 
+    @Bean(destroyMethod = "destroy")
+    public WebDriverDestroyer webDriverDestroyer() {
+        return new WebDriverDestroyer(webDriver());
+    }
+
 }
