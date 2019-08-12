@@ -21,6 +21,7 @@
 package be.thibaulthelsmoortel.webcap.commands.converters;
 
 import java.net.URL;
+import org.apache.commons.lang3.StringUtils;
 import picocli.CommandLine.ITypeConverter;
 
 /**
@@ -32,6 +33,9 @@ public class URLConverter implements ITypeConverter<URL> {
 
     @Override
     public URL convert(String value) throws Exception {
+        if (!StringUtils.startsWith(value, "http")) {
+            value = "http://" + value;
+        }
         return new URL(value);
     }
 }
