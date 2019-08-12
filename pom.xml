@@ -42,6 +42,8 @@
 		<jda.version>3.8.3_464</jda.version>
 		<apache.commons.version>3.9</apache.commons.version>
 		<picocli.version>4.0.1</picocli.version>
+		<selenium.version>3.141.59</selenium.version>
+		<webdrivermanager.version>3.6.1</webdrivermanager.version>
 
 		<junit.version>5.4.2</junit.version>
 		<junit.platform.commons.version>1.5.1</junit.platform.commons.version>
@@ -72,11 +74,40 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>${apache.commons.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
 		<dependency>
 			<groupId>info.picocli</groupId>
 			<artifactId>picocli</artifactId>
 			<version>${picocli.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-api -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-api</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-support -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-support</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-chrome-driver</artifactId>
+			<version>${selenium.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>${webdrivermanager.version}</version>
 		</dependency>
 
 		<dependency>
