@@ -1,2 +1,2 @@
-# WebCap # 
+# WebCap [![Build Status](https://travis-ci.org/Thibstars/Discord-Bot-Base.svg?branch=master)](https://travis-ci.org/Thibstars/WebCap) [![codecov](https://codecov.io/gh/Thibstars/WebCap/branch/master/graph/badge.svg)](https://codecov.io/gh/Thibstars/WebCap) # 
 Discord bot capturing screenshots of web pages.
