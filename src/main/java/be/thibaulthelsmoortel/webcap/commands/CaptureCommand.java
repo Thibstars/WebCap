@@ -76,7 +76,7 @@ public class CaptureCommand extends BotCommand {
             wait.until(d -> ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete"));
 
             log.debug("Capturing screenshot.");
-            File scrFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+            File captureFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
 
             log.debug("Building messageBuilder.");
             MessageBuilder messageBuilder = new MessageBuilder();
@@ -85,7 +85,7 @@ public class CaptureCommand extends BotCommand {
             builder.setImage("attachment://" + CAPTURE_PNG);
             MessageEmbed embed = builder.build();
             messageBuilder.setEmbed(embed);
-            ((MessageReceivedEvent) getEvent()).getChannel().sendFile(scrFile, CAPTURE_PNG, messageBuilder.build()).queue();
+            ((MessageReceivedEvent) getEvent()).getChannel().sendFile(captureFile, CAPTURE_PNG, messageBuilder.build()).queue();
 
             return embed;
         }
