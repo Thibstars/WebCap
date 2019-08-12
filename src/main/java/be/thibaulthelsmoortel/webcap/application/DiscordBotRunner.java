@@ -24,6 +24,7 @@ import be.thibaulthelsmoortel.webcap.commands.core.CommandExecutor;
 import be.thibaulthelsmoortel.webcap.config.DiscordBotEnvironment;
 import be.thibaulthelsmoortel.webcap.exceptions.MissingTokenException;
 import java.util.Objects;
+import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Message;
@@ -32,8 +33,6 @@ import net.dv8tion.jda.core.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -44,9 +43,8 @@ import org.springframework.stereotype.Component;
  * @author Thibault Helsmoortel
  */
 @Component
+@Slf4j
 public class DiscordBotRunner extends ListenerAdapter implements CommandLineRunner {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DiscordBotRunner.class);
 
     private final DiscordBotEnvironment discordBotEnvironment;
     private final CommandExecutor commandExecutor;
@@ -113,7 +111,7 @@ public class DiscordBotRunner extends ListenerAdapter implements CommandLineRunn
                 .build()
                 .awaitReady();
         } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
         }
 
     }

@@ -21,9 +21,9 @@
 package be.thibaulthelsmoortel.webcap.application;
 
 import be.thibaulthelsmoortel.webcap.config.DiscordBotEnvironment;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationListener;
@@ -35,9 +35,8 @@ import org.springframework.stereotype.Component;
  * @author Thibault Helsmoortel
  */
 @Component
+@Slf4j
 public class StartupApplicationListener implements ApplicationListener<ApplicationStartedEvent> {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(StartupApplicationListener.class);
 
     private final DiscordBotEnvironment discordBotEnvironment;
 
@@ -47,18 +46,18 @@ public class StartupApplicationListener implements ApplicationListener<Applicati
     }
 
     @Override
-    public void onApplicationEvent(ApplicationStartedEvent applicationStartedEvent) {
-        LOGGER.info("Application started.");
+    public void onApplicationEvent(@NotNull ApplicationStartedEvent applicationStartedEvent) {
+        log.info("Application started.");
         if (StringUtils.isNotBlank(discordBotEnvironment.getAuthor())) {
-            LOGGER.info("Author: {}", discordBotEnvironment.getAuthor());
+            log.info("Author: {}", discordBotEnvironment.getAuthor());
         }
 
         if (StringUtils.isNotBlank(discordBotEnvironment.getName())) {
-            LOGGER.info("Name: {}", discordBotEnvironment.getName());
+            log.info("Name: {}", discordBotEnvironment.getName());
         }
 
         if (StringUtils.isNotBlank(discordBotEnvironment.getVersion())) {
-            LOGGER.info("Version: {}", discordBotEnvironment.getVersion());
+            log.info("Version: {}", discordBotEnvironment.getVersion());
         }
     }
 }
