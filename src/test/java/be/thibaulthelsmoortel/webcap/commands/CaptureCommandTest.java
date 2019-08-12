@@ -21,6 +21,7 @@
 package be.thibaulthelsmoortel.webcap.commands;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -40,26 +41,27 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriver.Options;
+import org.openqa.selenium.WebDriver.Window;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
  * @author Thibault Helsmoortel
  */
 class CaptureCommandTest extends CommandBaseTest {
 
-    private static final String CAPTURE_PNG = "capture.png";
+    private CaptureCommand captureCommand;
 
-    private final CaptureCommand captureCommand;
-
-    @Autowired
-    CaptureCommandTest(CaptureCommand captureCommand) {
-        this.captureCommand = captureCommand;
-    }
+    private ChromeDriver webDriver;
 
     @Override
     @BeforeEach
     void setUp() {
         when(messageReceivedEvent.getChannel()).thenReturn(messageChannel);
+
+        this.webDriver = mock(ChromeDriver.class);
+        this.captureCommand = new CaptureCommand(webDriver);
     }
 
     @DisplayName("Should send capture message.")
@@ -71,10 +73,19 @@ class CaptureCommandTest extends CommandBaseTest {
 
         captureCommand.setEvent(messageReceivedEvent);
 
-        when(messageChannel.sendFile(any(File.class), eq(CAPTURE_PNG), any(Message.class))).thenReturn(mock(MessageAction.class));
+        Options options = mock(Options.class);
+        when(webDriver.manage()).thenReturn(options);
+        when(webDriver.executeScript(eq("return document.readyState"))).thenReturn("complete");
+        Window window = mock(Window.class);
+        when(options.window()).thenReturn(window);
+        File file = mock(File.class);
+        when(webDriver.getScreenshotAs(eq(OutputType.FILE))).thenReturn(file);
+        when(messageChannel.sendFile(eq(file), anyString(), any(Message.class))).thenReturn(mock(MessageAction.class));
+
         MessageEmbed result = (MessageEmbed) captureCommand.call();
+        verify(window).fullscreen();
         verify(messageReceivedEvent).getChannel();
-        verify(messageChannel).sendFile(any(File.class), eq("capture.png"), any(Message.class));
+        verify(messageChannel).sendFile(eq(file), anyString(), any(Message.class));
         verifyNoMoreInteractions(messageChannel);
 
         Assertions.assertNotNull(result, "Result must not be null.");
