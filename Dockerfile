@@ -1,7 +1,7 @@
 FROM maven:3.6.1-jdk-12 AS MAVEN_TOOL_CHAIN
 
 # Manually install missing shared libs for Chromium.
-RUN sh -c 'yum -y install libX11 libglib2.0-0 libnss3 libpcre libstdc++'
+RUN sh -c 'yum -y install libX11 libstdc++'
 
 COPY pom.xml /tmp/
 COPY src /tmp/src/
