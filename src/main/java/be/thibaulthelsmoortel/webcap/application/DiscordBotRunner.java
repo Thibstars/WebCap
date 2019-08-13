@@ -23,13 +23,10 @@ package be.thibaulthelsmoortel.webcap.application;
 import be.thibaulthelsmoortel.webcap.commands.core.CommandExecutor;
 import be.thibaulthelsmoortel.webcap.config.DiscordBotEnvironment;
 import be.thibaulthelsmoortel.webcap.exceptions.MissingTokenException;
-import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import net.dv8tion.jda.core.AccountType;
 import net.dv8tion.jda.core.JDABuilder;
 import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.entities.TextChannel;
-import net.dv8tion.jda.core.events.guild.GuildReadyEvent;
 import net.dv8tion.jda.core.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import org.apache.commons.lang3.StringUtils;
@@ -67,13 +64,6 @@ public class DiscordBotRunner extends ListenerAdapter implements CommandLineRunn
 
     private boolean processMessage(Message message) {
         return (discordBotEnvironment.isProcessBotMessages() && message.getAuthor().isBot()) || !message.getAuthor().isBot();
-    }
-
-    @Override
-    public void onGuildReady(GuildReadyEvent event) {
-        TextChannel textChannel = Objects.requireNonNull(event.getGuild().getDefaultChannel());
-        textChannel.sendTyping().queue();
-        textChannel.sendMessage(discordBotEnvironment.getName() + " reporting for duty!").queue();
     }
 
     private void handleMessage(MessageReceivedEvent event, String msg) {
