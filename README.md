@@ -6,6 +6,10 @@ At the moment, WebCap contains only one main feature; the capability of capturin
 
 Send the message `/capture <url>` to a channel with the active bot to retrieve a screen capture of the provided website.
 
+![image](https://user-images.githubusercontent.com/6588019/63175807-1212a900-c045-11e9-8e66-4c38fdeea556.png)
+
+![image](https://user-images.githubusercontent.com/6588019/63175843-2060c500-c045-11e9-809f-2615283fe831.png)
+
 ## Hosting ##
 ### Public ###
 This bot is currently not publicly hosted.
