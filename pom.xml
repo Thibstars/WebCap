@@ -43,7 +43,7 @@
 		<apache.commons.version>3.9</apache.commons.version>
 		<picocli.version>4.0.1</picocli.version>
 		<selenium.version>3.141.59</selenium.version>
-		<webdrivermanager.version>3.6.1</webdrivermanager.version>
+		<webdrivermanager.version>6.1.0</webdrivermanager.version>
 
 		<junit.version>5.4.2</junit.version>
 		<junit.platform.commons.version>1.5.1</junit.platform.commons.version>
