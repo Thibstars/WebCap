@@ -40,7 +40,7 @@
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 
 		<jda.version>3.8.3_464</jda.version>
-		<apache.commons.version>3.9</apache.commons.version>
+		<apache.commons.version>3.18.0</apache.commons.version>
 		<picocli.version>4.0.1</picocli.version>
 		<selenium.version>3.141.59</selenium.version>
 		<webdrivermanager.version>3.6.1</webdrivermanager.version>
